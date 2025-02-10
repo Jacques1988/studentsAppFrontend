@@ -1,0 +1,14 @@
+
+thead{
+    background-color:rgb(149, 78, 216);
+    color:#fff;
+    font-size:1.2rem;
+}
+
+td{
+    padding:1rem;
+}
+
+tr:nth-child(even){
+    background-color:lightgrey;
+}

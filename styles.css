@@ -1,0 +1,50 @@
+ul {
+  list-style-type: none;
+}
+
+.list-group-item {
+  padding: 1rem;
+  border-bottom: 1px solid lightgrey;
+}
+
+.list-group-item:nth-child(even) {
+  background-color: darkorchid;
+  color: #fff;
+}
+
+
+form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  height: 450px;
+  background-color: whitesmoke;
+  box-shadow: 5px 5px 30px grey;
+}
+
+input {
+  font-size: 1.3rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  color: #fff;
+  box-shadow: 0 0 5px black;
+}
+
+.btn-primary {
+  background-color: rgb(226, 55, 226);
+}
+
+.btn-secondary {
+  background-color:rgb(79, 79, 199);
+}
+
+.btn-danger{
+  background-color: rgb(196, 95, 95);
+}

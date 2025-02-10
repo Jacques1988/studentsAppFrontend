@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./dashboard.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Willkommen im Dashboard</h1>
+
+    <button style="margin:3rem 0;" class="btn btn-primary" onclick="logOut()">Log Out</button>
+
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Vorname</td>
+                <td>Nachname</td>
+                <td>Alter</td>
+                <td>Bearbeiten</td>
+                <td>Löschen</td>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+
+        </tbody>
+    </table>
+
+    <script src="./dashboard.js"></script>
+</body>
+</html>
