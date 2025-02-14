@@ -29,7 +29,7 @@ fetch("http://127.0.0.1:8000/api/students/", {
       tableDataLastname.innerHTML = `${student.lastname}`;
       tableDataAge.innerHTML = `${student.age}`;
       tableDataEdit.innerHTML = `<button class="btn btn-secondary" onclick="editStudent(${student.id})">Bearbeiten</button>`;
-      tableDataDelete.innerHTML = `<button class="btn btn-danger" onclick="deleteStudent(${student.id})">Bearbeiten</button>`;
+      tableDataDelete.innerHTML = `<button class="btn btn-danger" onclick="deleteStudent(${student.id})">Löschen</button>`;
 
       tableBody.appendChild(tableRow);
       tableRow.appendChild(tableDataID);
@@ -48,9 +48,7 @@ function logOut() {
 }
 
 function editStudent(id) {
-  console.log(
-    `Es handelt sich um den Studenten ${id} den wir bearbeiten wollen`
-  );
+  window.location.href = `edit.html?id=${id}`
 }
 
 function deleteStudent(id) {
