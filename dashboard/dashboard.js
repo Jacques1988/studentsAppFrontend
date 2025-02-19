@@ -48,9 +48,29 @@ function logOut() {
 }
 
 function editStudent(id) {
-  window.location.href = `edit.html?id=${id}`
+  window.location.href = `edit.html?id=${id}`;
 }
 
 function deleteStudent(id) {
-  console.log(`Wir wollen den Studenten mit der ID ${id} löschen`);
+  if (
+    confirm(`Willst du den Studenten mit der ID: ${id} wirklich löschen???`)
+  ) {
+    fetch(`http://127.0.0.1:8000/api/students/${id}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${ACCESSKEY}`,
+      },
+    })
+      .then((response) => response.json())
+      .then(
+        alert("Der Student wurde erfolgreich gelöscht!!!"),
+          (window.location.href = "dashboard.html")
+      )
+  }
+}
+
+
+function addStudent(){
+  window.location.href= './edit.html'
 }

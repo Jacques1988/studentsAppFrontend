@@ -8,43 +8,72 @@ document.addEventListener("DOMContentLoaded", () => {
   let studentIdParam = new URLSearchParams(window.location.search);
   const studentID = studentIdParam.get("id");
 
-  fetch(`http://127.0.0.1:8000/api/students/${studentID}/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "authorization": `Bearer ${accessToken}`
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      idField.value = data.id;
-      firstnameField.value = data.firstname;
-      lastnameField.value = data.lastname;
-      ageField.value = data.age;
-    });
+  if (studentID) {
+    fetch(`http://127.0.0.1:8000/api/students/${studentID}/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        idField.value = data.id;
+        firstnameField.value = data.firstname;
+        lastnameField.value = data.lastname;
+        ageField.value = data.age;
+      });
+  }
 });
 
 function editStudent() {
-  newData = {
+  if (idField.value) {
+    newData = {
+      id: idField.value,
+      firstname: firstnameField.value,
+      lastname: lastnameField.value,
+      age: ageField.value,
+    };
+
+    fetch(`http://127.0.0.1:8000/api/students/${newData.id}/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(newData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(`Student mit der ID ${newData.id} erfolgreich bearbeitet`);
+        window.location.href = "dashboard.html";
+      });
+  } else {
+    addNewStudent();
+  }
+
+  return false;
+}
+
+function addNewStudent() {
+  const NEWSTUDENT = {
     id: idField.value,
     firstname: firstnameField.value,
     lastname: lastnameField.value,
     age: ageField.value,
   };
 
-  fetch(`http://127.0.0.1:8000/api/students/${newData.id}/`, {
-    method: "PUT",
+  fetch("http://127.0.0.1:8000/api/students/", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${accessToken}`,
     },
-    body: JSON.stringify(newData),
+    body: JSON.stringify(NEWSTUDENT),
   })
     .then((response) => response.json())
-    .then((data) => {
-      alert(`Student mit der ID ${newData.id} erfolgreich bearbeitet`);
-      window.location.href = "dashboard.html";
+    .then(() => {
+      alert("Student erfolgreich hinzugefügt"),
+        (window.location.href = "./dashboard.html");
     });
-
-  return false;
 }
